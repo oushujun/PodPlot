@@ -29,7 +29,7 @@ if __name__ == "__main__":
     labels = dict()
     with open(fai_fofn, 'r') as f:
         for line in f:
-            fai_file, label = line.rstrip().split("\t")
+            fai_file, label = line.rstrip().split()
             labels[fai_file] = label
 
     # Compute coverages and plot
@@ -44,7 +44,7 @@ if __name__ == "__main__":
         read_lens = []
         with open(fai, 'r') as f:
             for line in f:
-                rlen = line.rstrip().split("\t")[1]
+                rlen = line.rstrip().split()[1]
                 read_lens.append(int(rlen))
 
         sorted_lens = sorted(read_lens, reverse=True)
@@ -83,5 +83,5 @@ if __name__ == "__main__":
     else:
         plt.ylabel("Percentage of Total Sequence")
     plt.grid()
-    plt.savefig("podplot")
+    plt.savefig(fai_fofn + ".podplot.pdf")
     log("Goodbye!")
